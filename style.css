@@ -1,0 +1,52 @@
+	body{background:#E3DED2;
+			font-family: Georgia, serif;
+	}
+	a,a:hover{color:#000;}
+
+	h2{
+		font-size:18px;	
+	}
+	.clearfix:after {
+		content: ".";
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
+	}
+	.clearfix {display: inline-block;}
+	/* Hides from IE-mac \*/
+	* html .clearfix {height: 1%;}
+	.clearfix {display: block;}
+	/* End hide from IE-mac */
+	.test{
+		width:960px;
+		margin:100px auto;	
+	}
+	.vtip 
+	{
+		width: 380px;
+		background: #e9e6df;
+		padding: 2px;
+		position: absolute;
+		z-index:1000;
+		display: none;
+		color:#000;
+	}
+	.inner {
+		border: 1px solid #c6c0b4;
+		background: #fff;
+		position: relative;
+		padding: 10px;
+	}
+
+	.wb_c1 {
+		z-index: 1001;
+		height: 10px;
+		left: 20px;
+		top: -7px;
+		width: 13px;
+		background: url("all_icon.png") no-repeat scroll 0 0 transparent;
+		background-position: -75px -573px;
+		display: block;
+		position: absolute;
+	}
