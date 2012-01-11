@@ -8,21 +8,43 @@
 <body>
 	
 	<div class="test">
-		<a href="#" title="get the fuck out my place" id="common">this is my kingdom</a>
+	<h1> Hover through the links below to see the effect </h1>
+	<code>
+		A simple tooltip plugin by viking, support normal and ajax.
+	</code>
+	<br/>
+	<br/>
+		<a href="#" title="get 123243 fuck out" id="simple">A simple tip show title</a>
 		<br/><br/><br/>
-		<a href="#" title="get 123243 fuck out">VikingMute</a>
+		<a href="#" title="get 123243 fuck out" id="custom">A simple tip with custom desc</a>
 		<br/><br/><br/>
-		<a href="#" title="get 123243 fuck out" id="json">ajax test</a>
+		<a href="#" title="get the fuck out my place" id="ajax">A ajax weibo card</a>
+
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
 	<script src="jquery.vtip.js" type="text/javascript"></script>
+	<script type="text/javascript" src="http://i1.sinaimg.cn/hs/zhangxuan/mustache.js"></script>
 	<script type="text/javascript">
-		$('#common').vtip({method:'ajax',url:'test2.json'},function(data,ele){
-			ele.html(data.idstr + " website name is "+ data.profile_image_url);
-		})	;
-		$('#json').vtip({method:'ajax',url:'test.json'},function(data,ele){
-			ele.html(data.nick + " website name is "+ data.profile_image_url);
-		})	
+		var temp = '<div class="clearfix">\
+			<div class="wb_pop_img"><a target="_blank" href="http://weibo.com/{{profile_url}}"><img alt="" src="{{profile_image_url}}"></a></div>\
+			<div class="wb_pop_mes">\
+				<h6 class="popname"><a target="_blank" href="http://weibo.com/{{profile_url}}">{{screen_name}}</a><i></i></h6>\
+				<p><s></s>{{province_name}}<i>{{city_name}}</i></p>\
+				<p><span class="nomar"><strong>关注</strong>{{friends_count}}</span>|<span><strong>粉丝</strong>{{followers_count}}</span>|<span><strong>微博</strong>{{statuses_count}}</span></p>\
+			</div>\
+			<p class="wb_pop_con">{{intro}}</p>\
+			<div class="wb_pop_button1"><a href="http://weibo.com/{{profile_url}}"></a></div>\
+		</div>';
+		$('#ajax').vtip({method:'ajax',url:'http://t.house.sina.com.cn/api/user/get_info.php?key=6cdc736e01d004cc59fa70c34adfde41&uid=1650521287&outtype=jsonp&callback=?'},function(data,ele){
+			var html = Mustache.to_html(temp, data);
+			ele.html(html);
+		});
+		$('#simple').vtip({method:'ajax',url:'http://t.house.sina.com.cn/api/user/get_info.php?key=6cdc736e01d004cc59fa70c34adfde41&uid=2206135475&outtype=jsonp&callback=?'},function(data,ele){
+			var html = Mustache.to_html(temp, data);
+			ele.html(html);
+		});
+		//$('#simple').vtip();
+		$('#custom').vtip({"desc":"I am a custom tip",position:'right'});		
 	</script>
 </body>
 </html>
