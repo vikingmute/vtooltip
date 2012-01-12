@@ -4,26 +4,69 @@
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 	<title>Simple Tooltip by viking</title>
 	<link rel="stylesheet" href="style.css" type="text/css"/>
+	<link rel="stylesheet" href="prettify.css" type="text/css"/>
 </head>
-<body>
+<body onload="prettyPrint()">
 	
 	<div class="test">
 	<h1> Hover through the links below to see the effect </h1>
-	<code>
-		A simple tooltip plugin by viking, support normal and ajax.
-	</code>
 	<br/>
 	<br/>
+	<h2>Demos</h2>
 		<a href="#" title="get 123243 fuck out" id="simple">A simple tip show title</a>
 		<br/><br/><br/>
 		<a href="#" title="get 123243 fuck out" id="custom">A simple tip with custom desc</a>
 		<br/><br/><br/>
 		<a href="#" title="get the fuck out my place" id="ajax">A ajax weibo card</a>
+		<br/><br/>
+		<h2>User Guide</h2>
+		<ul>
+		<li>1.Four directions(top,bottom,left,right)</li>
+		<li>2.Three ways(Normal,ajax,jsonp)</li>
+		<li>3.Auto cache ajax data, no-need to resend the request again</li>
+		<li>4.Custom css you can change the style.css</li>
+		</ul>
+		<pre class="prettyprint">
+//     Vtip.js 1.0.0
+//     (c) 2012 Viking.
+//     For all details and documentation:
+//     https://github.com/vikingmute/vtooltip
 
+//parameters goes here
+var settings = {
+	//four postions,top left,right bottom
+	position:'bottom',
+	//three ways:normal or ajax or jsonp
+	method:'normal',
+	//when method is ajax or jsonp, you need a url
+	url:'',
+	//when you need a custom message
+	desc:'',
+	//custom width&height
+	width:'auto',
+	height:'auto',
+}
+
+//usage
+
+//simple will so the title
+$('a').vtip();
+//simple with a custom content
+$('a').vtip({"desc":"Hey i am a custom tip"});
+//ajax method with callbacks
+$('#ajax').vtip({method:"ajax",url:"posts.php"},function(data,ele){
+	//data refers the ajax data,ele refres the tip element
+	//code goes here
+	
+})
+		</pre>
 	</div>
+
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
 	<script src="jquery.vtip.js" type="text/javascript"></script>
 	<script type="text/javascript" src="http://i1.sinaimg.cn/hs/zhangxuan/mustache.js"></script>
+	<script type="text/javascript" src="prettify.js"></script>
 	<script type="text/javascript">
 		var temp = '<div class="clearfix">\
 			<div class="wb_pop_img"><a target="_blank" href="http://weibo.com/{{profile_url}}"><img alt="" src="{{profile_image_url}}"></a></div>\
