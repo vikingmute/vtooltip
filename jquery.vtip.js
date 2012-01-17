@@ -1,4 +1,7 @@
-
+//     Vtip.js 1.0.0
+//     (c) 2012 Viking.
+//     For all details and documentation:
+//     https://github.com/vikingmute/vtooltip
 (function(){
 	var settings = {
 		//four postions,top left,right bottom
@@ -13,6 +16,7 @@
 		var opts = $.extend({},settings,options);
 		return this.each(function(){
 			var timer;
+			var trigger;
 			var self = $(this);
 			//the main container
 			var container = $("<div class='vtip'></div>");
@@ -65,8 +69,6 @@
 				$('body').append(container);
 			}
 			//all the length and width 
-			var x = self.offset().left;
-			var y = self.offset().top;
 			var selfx = self.width();
 			var selfy = self.height();
 
@@ -93,8 +95,12 @@
 				return [conti,newpos];
 			}
 			var caculate = function(position){
+				//all the length and width 
+				var x = self.offset().left;
+				var y = self.offset().top;
 				var bx = container.width();
 				var by = container.height();
+
 				if(position == 'top'){
 					container.append($("<i class='wb_c2'></i>"));
 					container.css({'top':y-by-7,'left':x+(selfx/2)-20});
@@ -111,25 +117,29 @@
 			}
 			//tip events
 			self.bind('mouseover',function(){
-				var conti = adjust(opts.position);
-				create(conti);
-				if(conti[0]){
-					caculate(opts.position);
-				}else{
-					caculate(conti[1]);
-				}
-				container.show();
-				container.bind('mouseover',function(){
-					clearTimeout(timer);
-				})
-				container.bind('mouseout',function(){
-					timer = setTimeout(function(){
-						container.hide();
-						container.remove();
-					},600)
-				})
+				trigger = setTimeout(function(){
+					var conti = adjust(opts.position);
+					create(conti);
+					if(conti[0]){
+						caculate(opts.position);
+					}else{
+						caculate(conti[1]);
+					}
+					container.show();
+					container.bind('mouseover',function(){
+						clearTimeout(timer);
+					})
+					container.bind('mouseout',function(){
+						timer = setTimeout(function(){
+							container.hide();
+							container.remove();
+						},600)
+					})
+				},200)
+
 			})
 			self.bind('mouseout',function(){
+				clearTimeout(trigger);
 				timer = setTimeout(function(){
 					container.hide();
 					container.remove();
