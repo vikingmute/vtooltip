@@ -1,0 +1,65 @@
+	body{
+		background:#E3DED2;
+   		font: 12px/1.5 宋体,sans-serif;
+	}
+
+	a,a:hover{color:#000;}
+
+	h2{
+		font-size:18px;	
+	}
+	.clearfix:after {
+		content: ".";
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
+	}
+	.clearfix {display: inline-block;}
+	/* Hides from IE-mac \*/
+	* html .clearfix {height: 1%;}
+	.clearfix {display: block;}
+	/* End hide from IE-mac */
+	.test{
+		width:960px;
+		margin:100px auto;	
+	}
+	.vtip 
+	{
+		width: 380px;
+		background: #e9e6df;
+		padding: 2px;
+		position: absolute;
+		z-index:1000;
+		display: none;
+		color:#000;
+	}
+	.inner {
+		border: 1px solid #c6c0b4;
+		background: #fff;
+		position: relative;
+		padding: 10px;
+	}
+.wb_c1, .wb_c2, .wb_c3, .wb_c4{	background: url("all_icon.png") no-repeat scroll 0 0 transparent; position: absolute; display: block;z-index: 1001;}
+.wb_c1{width: 13px; height: 10px; left: 20px; top: -7px; _top: -9px; background-position: -75px -573px;}
+.wb_c2{width: 13px; height: 10px; left: 20px; bottom: -7px; _bottom: -9px; background-position: -90px -573px;}
+.wb_c3{width: 10px; height: 15px; left: -7px; _left: -9px; top: 15px; background-position: -105px -573px;}
+.wb_c4{width: 10px; height: 15px; right: -7px; _right: -7px; top: 15px; background-position: -116px -573px;}
+.wb_pop_img{width: 50px; float: left; margin-right: 10px;}
+.popname{height: 20px; overflow: hidden; font-size:12px;margin:0px;}
+.popname i{width: 14px; height: 11px; background-position: -165px -82px; display: inline-block;}
+.wb_pop_mes p{color: #a0a0a0;margin:0px;padding:0px;}
+.wb_pop_mes p i{margin-left: 10px; font-style: normal;}
+.wb_pop_mes p span{margin: 10px;}
+.wb_pop_mes p span strong{color: #698ab7; margin-right: 5px;}
+.wb_pop_mes p span.nomar{margin-left: 0;}
+.wb_pop_con{color: #a0a0a0; border-bottom: 1px solid #ddd; padding-bottom: 5px; margin: 5px 0 10px;}
+.wb_pop_button1 a,.wb_pop_button2{
+	background: url("all_icon.png") no-repeat scroll 0 0 transparent;
+}
+.wb_pop_button1{float: right;}
+.wb_pop_button1 a{width: 71px; height: 27px; background-position: -129px -570px; display: block;}
+.wb_pop_button2{float: right; width: 141px; height: 27px; background-position: -202px -570px; display: block; line-height: 27px;}
+.wb_pop_button2 i{margin-left: 30px; color: #a0a0a0; font-style: normal;}
+.wb_pop_button2 span{margin-left: 30px;}
+.wb_pop_button2 span a{color: #6b8ab9;}

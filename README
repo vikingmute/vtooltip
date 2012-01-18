@@ -1,0 +1,33 @@
+A simple & elegant jquery tooltip plugin by viking
+//     Vtip.js 1.0.1
+//     (c) 2012 Viking.
+//     For all details and documentation:
+//     https://github.com/vikingmute/vtooltip
+
+//parameters goes here
+var settings = {
+	//four postions,top left,right bottom
+	position:'bottom',
+	//three ways:normal or ajax or jsonp
+	method:'normal',
+	//when method is ajax or jsonp, you need a url
+	url:'',
+	//when you need a custom message
+	desc:'',
+	//custom width&height
+	width:'auto',
+	height:'auto',
+}
+
+//usage
+
+//simple will so the title
+$('a').vtip();
+//simple with a custom content
+$('a').vtip({"desc":"Hey i am a custom tip"});
+//ajax method with callbacks
+$('#ajax').vtip({method:"ajax",url:"posts.php"},function(data,ele){
+	//data refers the ajax data,ele refres the tip element
+	//code goes here
+	
+})
