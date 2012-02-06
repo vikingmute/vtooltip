@@ -27,7 +27,7 @@
 		<li>4.Custom css you can change the style.css</li>
 		</ul>
 		<pre class="prettyprint">
-//     Vtip.js 1.0.0
+//     Vtip.js 1.0.1
 //     (c) 2012 Viking.
 //     For all details and documentation:
 //     https://github.com/vikingmute/vtooltip
@@ -78,15 +78,15 @@ $('#ajax').vtip({method:"ajax",url:"posts.php"},function(data,ele){
 			<p class="wb_pop_con">{{intro}}</p>\
 			<div class="wb_pop_button1"><a href="http://weibo.com/{{profile_url}}"></a></div>\
 		</div>';
-		$('#ajax').vtip({method:'ajax',url:'http://t.house.sina.com.cn/api/user/get_info.php?key=6cdc736e01d004cc59fa70c34adfde41&uid=1650521287&outtype=jsonp&callback=?'},function(data,ele){
+		$('#ajax').vtip({method:'jsonp',width:370,url:'http://t.house.sina.com.cn/api/user/get_info.php?key=6cdc736e01d004cc59fa70c34adfde41&uid=1650521287&outtype=jsonp&callback=?'},function(data,ele){
 			var html = Mustache.to_html(temp, data);
 			ele.html(html);
 		});
-		$('#simple').vtip({method:'ajax',url:'http://t.house.sina.com.cn/api/user/get_info.php?key=6cdc736e01d004cc59fa70c34adfde41&uid=2206135475&outtype=jsonp&callback=?'},function(data,ele){
+		/*$('#simple').vtip({method:'ajax',url:'http://t.house.sina.com.cn/api/user/get_info.php?key=6cdc736e01d004cc59fa70c34adfde41&uid=2206135475&outtype=jsonp&callback=?'},function(data,ele){
 			var html = Mustache.to_html(temp, data);
 			ele.html(html);
-		});
-		//$('#simple').vtip();
+		});*/
+		$('#simple').vtip();
 		$('#custom').vtip({"desc":"I am a custom tip",position:'right'});		
 	</script>
 </body>
