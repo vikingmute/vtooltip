@@ -1,4 +1,4 @@
-//     Vtip.js 1.0.0
+//     Vtip.js 1.0.2
 //     (c) 2012 Viking.
 //     For all details and documentation:
 //     https://github.com/vikingmute/vtooltip
@@ -7,7 +7,8 @@
 		//four postions,top left,right bottom
 		position:'bottom',
 		//three ways:normal or ajax or jsonp
-		method:'normal'
+		method:'normal',
+		width:'auto'
 	}
 	var cache = {
 		
@@ -20,8 +21,9 @@
 			var self = $(this);
 			//the main container
 			var container = $("<div class='vtip'></div>");
+			container.css({'width':opts.width});
 			//create the main tip
-			var create = function(conti){
+			var create = function(){
 				//in normal method & ajax run for 1st time, init the container
 				container.html('');
 
@@ -29,35 +31,33 @@
 				container.append($("<div class='inner'></div>"));
 
 				//two ways to append the content
-				if(opts.method === 'ajax'){
+				if(opts.method === 'ajax' || opts.method === 'jsonp'){
 					if(self.attr('rel')){
 						var id = self.attr('rel');
 						callback(cache[id],container.find('.inner'));	
 					}else{
 						container.find('.inner').html("Loading....");
-						$.getJSON(opts.url,function(data){
+						if(opts.method == 'ajax'){
+							$.ajax({
+								url:opts.url,
+								dataType:"json",
+								success:function(data){
+									cache[data.id] = data;
+									self.attr('rel',data.id);
+									callback(data,container.find('.inner'));
+									afterFix(opts.position);		
+								}
+							})
+						}else{
+							$.getJSON(opts.url,function(data){
 								cache[data.id] = data;
 								self.attr('rel',data.id);
 								callback(data,container.find('.inner'));
-								if(conti[0]){
-									caculate(opts.position);
-								}else{
-									caculate(conti[1]);
-								}
-								
-						})
-					}
-
-					/*$.ajax({
-						url:opts.url,
-						dataType:"json",
-						success:function(data){
-							loaded = true;
-							cache[data.id] = data;
-							//container.attr('id',data.id);
-							callback(data,container.find('.inner'));		
+								afterFix(opts.position);
+							})
 						}
-					})*/
+
+					}
 				}else{
 					if(opts.desc){
 						container.find('.inner').html(opts.desc);
@@ -69,10 +69,9 @@
 				$('body').append(container);
 			}
 			//all the length and width 
-			var selfx = self.width();
-			var selfy = self.height();
 
-			var adjust = function(position){
+
+			/*var adjust = function(position){
 				var conti = true;
 				var newpos;
 				var x = self.offset().left;
@@ -93,20 +92,21 @@
 					}
 				}
 				return [conti,newpos];
-			}
+			}*/
 			var caculate = function(position){
-				//all the length and width 
+				//all the length and width
+				var selfx = self.width();
+				var selfy = self.height(); 
 				var x = self.offset().left;
 				var y = self.offset().top;
 				var bx = container.width();
-				var by = container.height();
-
+				var by = container.outerHeight();
 				if(position == 'top'){
 					container.append($("<i class='wb_c2'></i>"));
-					container.css({'top':y-by-7,'left':x+(selfx/2)-20});
+					container.css({'top':y-by-8,'left':x+(selfx/2)-20});
 				}else if(position == 'bottom'){
 					container.append($("<i class='wb_c1'></i>"));
-					container.css({'top':y+selfy+6,'left':x+(selfx/2)-20});
+					container.css({'top':y+selfy+8,'left':x+(selfx/2)-20});
 				}else if(position == 'left'){
 					container.append($("<i class='wb_c4'></i>"));
 					container.css({'top':y+(selfy/2)-20,'left':x-bx-6});
@@ -115,16 +115,17 @@
 					container.css({'top':y+(selfy/2)-20,'left':x+selfx+6});
 				}
 			}
+			var afterFix = function(position){
+				if(position == "top" || position == "left"){
+					caculate(position);
+				}
+			}
 			//tip events
 			self.bind('mouseover',function(){
 				trigger = setTimeout(function(){
-					var conti = adjust(opts.position);
-					create(conti);
-					if(conti[0]){
-						caculate(opts.position);
-					}else{
-						caculate(conti[1]);
-					}
+					create();
+					caculate(opts.position);
+
 					container.show();
 					container.bind('mouseover',function(){
 						clearTimeout(timer);
