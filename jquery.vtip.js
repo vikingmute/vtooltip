@@ -1,4 +1,4 @@
-//     Vtip.js 1.0.0
+//     Vtip.js 1.0.2
 //     (c) 2012 Viking.
 //     For all details and documentation:
 //     https://github.com/vikingmute/vtooltip
@@ -44,14 +44,16 @@
 								success:function(data){
 									cache[data.id] = data;
 									self.attr('rel',data.id);
-									callback(data,container.find('.inner'));		
+									callback(data,container.find('.inner'));
+									afterFix(opts.position);		
 								}
 							})
 						}else{
 							$.getJSON(opts.url,function(data){
 								cache[data.id] = data;
 								self.attr('rel',data.id);
-								callback(data,container.find('.inner'));								
+								callback(data,container.find('.inner'));
+								afterFix(opts.position);
 							})
 						}
 
@@ -67,8 +69,7 @@
 				$('body').append(container);
 			}
 			//all the length and width 
-			var selfx = self.width();
-			var selfy = self.height();
+
 
 			/*var adjust = function(position){
 				var conti = true;
@@ -93,24 +94,30 @@
 				return [conti,newpos];
 			}*/
 			var caculate = function(position){
-				//all the length and width 
+				//all the length and width
+				var selfx = self.width();
+				var selfy = self.height(); 
 				var x = self.offset().left;
 				var y = self.offset().top;
 				var bx = container.width();
-				var by = container.height();
-
+				var by = container.outerHeight();
 				if(position == 'top'){
 					container.append($("<i class='wb_c2'></i>"));
-					container.css({'top':y-by-7,'left':x+(selfx/2)-20});
+					container.css({'top':y-by-8,'left':x+(selfx/2)-20});
 				}else if(position == 'bottom'){
 					container.append($("<i class='wb_c1'></i>"));
-					container.css({'top':y+selfy+6,'left':x+(selfx/2)-20});
+					container.css({'top':y+selfy+8,'left':x+(selfx/2)-20});
 				}else if(position == 'left'){
 					container.append($("<i class='wb_c4'></i>"));
 					container.css({'top':y+(selfy/2)-20,'left':x-bx-6});
 				}else if(position == 'right'){
 					container.append($("<i class='wb_c3'></i>"));
 					container.css({'top':y+(selfy/2)-20,'left':x+selfx+6});
+				}
+			}
+			var afterFix = function(position){
+				if(position == "top" || position == "left"){
+					caculate(position);
 				}
 			}
 			//tip events
