@@ -1,4 +1,4 @@
-//     Vtip.js 1.0.2
+//     Vtip.js 1.0.3
 //     (c) 2012 Viking.
 //     For all details and documentation:
 //     https://github.com/vikingmute/vtooltip
@@ -25,12 +25,10 @@
 			//create the main tip
 			var create = function(){
 				//in normal method & ajax run for 1st time, init the container
-				container.html('');
-
-				
+				container.html('');				
 				container.append($("<div class='inner'></div>"));
 
-				//two ways to append the content
+				//three ways to append the content
 				if(opts.method === 'ajax' || opts.method === 'jsonp'){
 					if(self.attr('rel')){
 						var id = self.attr('rel');
@@ -109,10 +107,10 @@
 					container.css({'top':y+selfy+8,'left':x+(selfx/2)-20});
 				}else if(position == 'left'){
 					container.append($("<i class='wb_c4'></i>"));
-					container.css({'top':y+(selfy/2)-20,'left':x-bx-6});
+					container.css({'top':y+(selfy/2)-20,'left':x-bx-8});
 				}else if(position == 'right'){
 					container.append($("<i class='wb_c3'></i>"));
-					container.css({'top':y+(selfy/2)-20,'left':x+selfx+6});
+					container.css({'top':y+(selfy/2)-20,'left':x+selfx+8});
 				}
 			}
 			var afterFix = function(position){

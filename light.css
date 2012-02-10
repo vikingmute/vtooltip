@@ -1,0 +1,55 @@
+
+.vtip 
+{
+	background: none;
+	padding: 2px;
+	position: absolute;
+	z-index:1000;
+	display: none;
+	color:#191919;
+	opacity: 0.9;
+}
+.inner {
+	border: 1px solid #c6c0b4;
+	background: #fff;
+	position: relative;
+	padding: 10px;
+	opacity: 0.9;
+	border-radius:3px;
+}
+.wb_c1, .wb_c2, .wb_c3, .wb_c4{ position: absolute; 
+	display: block;
+	z-index: 1001;	
+	width: 0;
+	height: 0;
+	opacity: 0.9;
+	}
+.wb_c1{
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 5px solid #fff; 
+	top: -2px; _top: -3px; 
+	left:20px;
+	}
+.wb_c2{
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-top: 5px solid #fff;
+	left: 20px; 
+	bottom: -2px; _bottom: -9px; 
+ 	}
+.wb_c3{
+	border-top: 5px solid transparent;
+	border-bottom: 5px solid transparent;
+	border-right: 5px solid #fff;
+	left: -2px; _left: -4px; 
+	top: 17px;
+	}
+.wb_c4{
+	border-top: 5px solid transparent;
+	border-bottom: 5px solid transparent;
+	border-left: 5px solid #fff;
+	right: -2px; _right: -4px; 
+	top: 17px;
+	}
+

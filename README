@@ -1,8 +1,9 @@
 A simple & elegant jquery tooltip plugin by viking
-//     Vtip.js 1.0.1
+//     Vtip.js 1.3
 //     (c) 2012 Viking.
 //     For all details and documentation:
 //     https://github.com/vikingmute/vtooltip
+//     changelog:use css to animate the triangle, add two styles for users don't need the png file anymore
 
 //parameters goes here
 var settings = {
